@@ -1,2 +1,2 @@
 # ci-cd-elasticbeanstack
-![arch](/arch.png)
+![arch](/arch2.png)
