@@ -64,39 +64,7 @@ Resources:
         FromPort: 0
         ToPort: 65535
         Description: Open to an external network
-/*
-  RDSSubnetGroup:
-    Type: "AWS::RDS::DBSubnetGroup"
-    Properties:
-      DBSubnetGroupDescription: 'Subnet Group for RDS instance'
-      DBSubnetGroupName: !Join [ "-", [ !Ref Name, 'subnetgroup-dev' ] ]
-      SubnetIds: !Ref PrivateSubnets
 
-  AuroraCluster:
-    Type: AWS::RDS::DBCluster
-    Properties:
-      Engine: aurora
-      MasterUsername: !Ref DBMasterUsername
-      MasterUserPassword: !Ref DBMasterUserPassword
-      DBSubnetGroupName: !Ref RDSSubnetGroup
-      DatabaseName: !Ref DBName
-      DBClusterParameterGroupName: default.aurora5.6
-      Port: !Ref DBPort
-      VpcSecurityGroupIds:
-        - !Ref RDSInstanceSecurityGroup
-    DependsOn: RDSSubnetGroup
-
-  AuroraInstance0:
-    Type: AWS::RDS::DBInstance
-    Properties:
-      Engine: aurora
-      PubliclyAccessible: 'false'
-      DBClusterIdentifier: !Ref AuroraCluster
-      DBInstanceClass: !Ref DBInstanceClass
-      DBSubnetGroupName: !Ref RDSSubnetGroup
-      DBParameterGroupName: default.aurora5.6
-    DependsOn: AuroraCluster
-*/
   BeanstalkSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
