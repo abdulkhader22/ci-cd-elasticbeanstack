@@ -64,7 +64,7 @@ Resources:
         FromPort: 0
         ToPort: 65535
         Description: Open to an external network
-
+/*
   RDSSubnetGroup:
     Type: "AWS::RDS::DBSubnetGroup"
     Properties:
@@ -96,7 +96,7 @@ Resources:
       DBSubnetGroupName: !Ref RDSSubnetGroup
       DBParameterGroupName: default.aurora5.6
     DependsOn: AuroraCluster
-
+*/
   BeanstalkSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
