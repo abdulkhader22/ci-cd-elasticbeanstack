@@ -43,28 +43,6 @@ Parameters:
   SNSTopicArn:
     Type: String
 
-Resources:
-  RDSInstanceSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: Security Group for rds instance
-      VpcId: !Ref VpcId
-      Tags:
-        - Key: Name
-          Value: !Sub ${Name} (RDS SecurityGroup Dev)
-      SecurityGroupIngress:
-      - IpProtocol: tcp
-        FromPort: !Ref DBPort
-        ToPort: !Ref DBPort
-        Description: Aurora Service
-        CidrIp: !Ref VpcCIDR
-      SecurityGroupEgress:
-      - IpProtocol: tcp
-        CidrIp: 0.0.0.0/0
-        FromPort: 0
-        ToPort: 65535
-        Description: Open to an external network
-
   BeanstalkSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -191,21 +169,6 @@ Resources:
       - Namespace: aws:elbv2:listener:default
         OptionName: ListenerEnabled
         Value: 'true'
-      - Namespace: aws:elasticbeanstalk:application:environment
-        OptionName: RDS_DB_NAME
-        Value: !Ref DBName
-      - Namespace: aws:elasticbeanstalk:application:environment
-        OptionName: RDS_HOSTNAME
-        Value: !GetAtt AuroraCluster.Endpoint.Address
-      - Namespace: aws:elasticbeanstalk:application:environment
-        OptionName: RDS_PORT
-        Value: !Ref DBPort
-      - Namespace: aws:elasticbeanstalk:application:environment
-        OptionName: RDS_USERNAME
-        Value: !Ref DBMasterUsername
-      - Namespace: aws:elasticbeanstalk:application:environment
-        OptionName: RDS_PASSWORD
-        Value: !Ref DBMasterUserPassword
       SolutionStackName: !Ref SolutionStackName
 
   Environment:
