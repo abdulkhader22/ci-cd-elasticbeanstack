@@ -235,7 +235,6 @@ Parameters:
             - s3:*
             - sns:*
             - cloudformation:*
-            - rds:*
             - sqs:*
             - ecs:*
             - iam:PassRole
